@@ -42,4 +42,20 @@ class UserListingTool {
     getKeysFromUserStore () {
         return Object.keys(localStorage).filter(e=>e.indexOf("users_") === 0).map(e=>e.replace("users_", ""))
     }
+    compareAndLogAllUserStore() {
+        this.getKeysFromUserStore().forEach(compare1 => {
+            this.getKeysFromUserStore().forEach(compare2=>{
+                if(compare1 != compare2) {
+                    console.log(
+                        compare1,
+                        compare2,
+                        this.filterUsers(
+                            this.getUserStore(compare1),
+                            this.getUserStore(compare2)
+                        )
+                    );
+                }
+            })
+        });
+    }
 }
